@@ -7,6 +7,26 @@
 
 import SwiftUI
 
+struct FlagImage:  View {
+    var text : String
+    var body : some View {
+        Image(text)
+            .clipShape(.capsule)
+            .shadow(radius : 5)
+    }
+}
+
+struct TitleText: View {
+    var text : String
+    var body : some View {
+        Text(text)
+            .foregroundStyle(.blue)
+        
+
+            
+    }
+}
+
 struct ContentView: View {
     @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
     @State var correctAnswer = Int.random(in: 0...2)
@@ -15,6 +35,7 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var correct = true
+    
     
     
     var body: some View {
@@ -26,7 +47,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Text("Guess the Flag")
+                TitleText(text : "Guess The Flag")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 VStack(spacing: 15) {
@@ -43,9 +64,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label : {
-                            Image(countries[number])
-                                .clipShape(.capsule)
-                                .shadow(radius : 5)
+                            FlagImage(text : countries[number])
                         }
                         
                     }
